@@ -6,6 +6,7 @@ Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/jakarta-commons/release/commons-modeler/v%{version}/commons-modeler-%{version}-src.tar.gz
+# Source0-md5:	4a7f9e90ad74895a7e3d0acb2eb23572
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk >= 1.2
