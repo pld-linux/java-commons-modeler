@@ -11,6 +11,8 @@ URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk >= 1.2
 BuildRequires:	jmx
+BuildRequires:	jakarta-commons-digester
+BuildRequires:	jakarta-commons-logging
 Requires:	jakarta-commons-beanutils
 Requires:	jakarta-commons-collections
 Requires:	jakarta-commons-digester
@@ -49,6 +51,12 @@ Dokumentacja do Jakarta Commons Modeller.
 %setup -q -n commons-modeler-%{version}-src
 
 %build
+cat << EOF > build.properties
+commons-digester.jar=%{_javalibdir}/commons-digester.jar
+commons-logging.jar=%{_javalibdir}/commons-logging.jar
+jmx.jar=%{_javalibdir}/jmxri.jar
+jmxtools.jar=%{_javalibdir}/jmxtools.jar
+EOF
 touch LICENSE
 cp build.xml build.xml.org
 sed -e 's#../LICENSE#LICENSE#g' build.xml.org > build.xml
