@@ -9,6 +9,7 @@ Source0:	http://jakarta.apache.org/builds/jakarta-commons/release/commons-modele
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk >= 1.2
+BuildRequires:	jmx
 Requires:	jakarta-commons-beanutils
 Requires:	jakarta-commons-collections
 Requires:	jakarta-commons-digester
