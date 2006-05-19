@@ -8,7 +8,7 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/modeler/source/modeler-%{version}-src.tar.gz
 # Source0-md5:	6de043186a348758c845f1a2321e8308
 URL:		http://jakarta.apache.org/commons/modeler/
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	jakarta-commons-digester
 BuildRequires:	jakarta-commons-logging
 BuildRequires:	jdk >= 1.2
