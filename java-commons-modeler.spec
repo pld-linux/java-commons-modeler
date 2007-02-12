@@ -1,5 +1,5 @@
 Summary:	Jakarta Commons Modeler - managing resources via Java Management Extensions
-Summary(pl):	Jakarta Commons Modeler - zarz±dzanie zasobami z u¿yciem Java Management Extensions
+Summary(pl.UTF-8):   Jakarta Commons Modeler - zarzÄ…dzanie zasobami z uÅ¼yciem Java Management Extensions
 Name:		jakarta-commons-modeler
 Version:	1.1
 Release:	1
@@ -28,21 +28,21 @@ supporting the creation and use of Model MBeans to manage application
 resources via tools that implement the Java Management Extensions
 (JMX) APIs.
 
-%description -l pl
+%description -l pl.UTF-8
 Zadaniem komponentu Modeler jest dostarczenie biblioteki klas
-wspieraj±cych tworzenie i u¿ywanie Model MBeans do zarz±dzania
-zasobami aplikacji z u¿yciem narzêdzi bêd±cych implementacj± API Java
+wspierajÄ…cych tworzenie i uÅ¼ywanie Model MBeans do zarzÄ…dzania
+zasobami aplikacji z uÅ¼yciem narzÄ™dzi bÄ™dÄ…cych implementacjÄ… API Java
 Management Extensions (JMX).
 
 %package doc
 Summary:	Jakarta Commons Modeller documentation
-Summary(pl):	Dokumentacja do Jakarta Commons Modeller
+Summary(pl.UTF-8):   Dokumentacja do Jakarta Commons Modeller
 Group:		Development/Languages/Java
 
 %description doc
 Jakarta Commons Modeller documentation.
 
-%description doc -l pl
+%description doc -l pl.UTF-8
 Dokumentacja do Jakarta Commons Modeller.
 
 %prep
