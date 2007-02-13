@@ -1,5 +1,5 @@
 Summary:	Jakarta Commons Modeler - managing resources via Java Management Extensions
-Summary(pl.UTF-8):   Jakarta Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
+Summary(pl.UTF-8):	Jakarta Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		jakarta-commons-modeler
 Version:	1.1
 Release:	1
@@ -36,7 +36,7 @@ Management Extensions (JMX).
 
 %package doc
 Summary:	Jakarta Commons Modeller documentation
-Summary(pl.UTF-8):   Dokumentacja do Jakarta Commons Modeller
+Summary(pl.UTF-8):	Dokumentacja do Jakarta Commons Modeller
 Group:		Development/Languages/Java
 
 %description doc
