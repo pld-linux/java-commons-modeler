@@ -34,43 +34,57 @@ wspierających tworzenie i używanie Model MBeans do zarządzania
 zasobami aplikacji z użyciem narzędzi będących implementacją API Java
 Management Extensions (JMX).
 
-%package doc
+%package javadoc
 Summary:	Jakarta Commons Modeller documentation
 Summary(pl.UTF-8):	Dokumentacja do Jakarta Commons Modeller
-Group:		Development/Languages/Java
+Group:		Documentation
+Requires:	jpackage-utils
+Obsoletes:	jakarta-commons-modeler-doc
 
-%description doc
+%description javadoc
 Jakarta Commons Modeller documentation.
 
-%description doc -l pl.UTF-8
+%description javadoc -l pl.UTF-8
 Dokumentacja do Jakarta Commons Modeller.
 
 %prep
 %setup -q -n commons-modeler-%{version}-src
 
 %build
-cat << EOF > build.properties
-commons-digester.jar=%{_javadir}/commons-digester.jar
-commons-logging.jar=%{_javadir}/commons-logging.jar
-jmx.jar=%{_javadir}/jmxri.jar
-jmxtools.jar=%{_javadir}/jmxtools.jar
-EOF
-ant dist
+required_jars="commons-digester commons-logging jre/jmx"
+export CLASSPATH=$(/usr/bin/build-classpath $required_jars)
+%ant dist
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
+for a in dist/*.jar; do
+	jar=${a##*/}
+	cp -a dist/$jar $RPM_BUILD_ROOT%{_javadir}/${jar%%.jar}-%{version}.jar
+	ln -s ${jar%%.jar}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/$jar
+done
 
-install dist/*.jar $RPM_BUILD_ROOT%{_javadir}
+# javadoc
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -pr dist/docs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post javadoc
+rm -f %{_javadocdir}/%{name}
+ln -s %{name}-%{version} %{_javadocdir}/%{name}
+
+%postun javadoc
+if [ "$1" = "0" ]; then
+	rm -f %{_javadocdir}/%{name}
+fi
 
 %files
 %defattr(644,root,root,755)
 %doc LICENSE.txt PROPOSAL.html RELEASE-NOTES* STATUS.html
 %{_javadir}/*.jar
 
-%files doc
+%files javadoc
 %defattr(644,root,root,755)
-%doc dist/docs
+%{_javadocdir}/%{name}-%{version}
