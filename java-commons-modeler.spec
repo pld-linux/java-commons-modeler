@@ -2,19 +2,19 @@
 Summary:	Jakarta Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Jakarta Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		jakarta-commons-modeler
-Version:	1.1
+Version:	2.0
 Release:	1
-License:	Apache v1.1
+License:	Apache v2.0
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/jakarta/commons/modeler/source/modeler-%{version}-src.tar.gz
-# Source0-md5:	6de043186a348758c845f1a2321e8308
+Source0:	http://www.apache.org/dist/jakarta/commons/modeler/source/commons-modeler-%{version}-src.tar.gz
+# Source0-md5:	43983c66113ddaa9880e4a7ea7d38db4
 URL:		http://jakarta.apache.org/commons/modeler/
 BuildRequires:	ant
-BuildRequires:	rpm-javaprov
 BuildRequires:	jakarta-commons-digester
 BuildRequires:	jakarta-commons-logging
 BuildRequires:	jdk >= 1.2
 BuildRequires:	jmx
+BuildRequires:	rpm-javaprov
 Requires:	jakarta-commons-beanutils
 Requires:	jakarta-commons-collections
 Requires:	jakarta-commons-digester
@@ -80,7 +80,7 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE.txt PROPOSAL.html RELEASE-NOTES* STATUS.html
+%doc LICENSE.txt RELEASE-NOTES.txt
 %{_javadir}/*.jar
 
 %files javadoc
