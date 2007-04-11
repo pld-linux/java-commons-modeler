@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	Jakarta Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Jakarta Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		jakarta-commons-modeler
@@ -9,6 +10,7 @@ Source0:	http://www.apache.org/dist/jakarta/commons/modeler/source/modeler-%{ver
 # Source0-md5:	6de043186a348758c845f1a2321e8308
 URL:		http://jakarta.apache.org/commons/modeler/
 BuildRequires:	ant
+BuildRequires:	rpm-javaprov
 BuildRequires:	jakarta-commons-digester
 BuildRequires:	jakarta-commons-logging
 BuildRequires:	jdk >= 1.2
@@ -52,8 +54,9 @@ Dokumentacja do Jakarta Commons Modeller.
 
 %build
 required_jars="commons-digester commons-logging jre/jmx"
-export CLASSPATH=$(/usr/bin/build-classpath $required_jars)
+export CLASSPATH=$(build-classpath $required_jars)
 %ant dist
+mv dist/commons-modeler-src.jar .
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -66,19 +69,14 @@ done
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr dist/docs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -a dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-rm -f %{_javadocdir}/%{name}
-ln -s %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ "$1" = "0" ]; then
-	rm -f %{_javadocdir}/%{name}
-fi
+ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
@@ -88,3 +86,4 @@ fi
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
+%ghost %{_javadocdir}/%{name}
