@@ -1,11 +1,15 @@
+#
+# Conditional build:
+%bcond_without    javadoc        # don't build javadoc
+
 %include	/usr/lib/rpm/macros.java
 Summary:	Jakarta Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Jakarta Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
-Name:		jakarta-commons-modeler
+Name:        java-commons-modeler
 Version:	2.0
 Release:	1
 License:	Apache v2.0
-Group:		Development/Languages/Java
+Group:        Libraries/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/modeler/source/commons-modeler-%{version}-src.tar.gz
 # Source0-md5:	43983c66113ddaa9880e4a7ea7d38db4
 URL:		http://jakarta.apache.org/commons/modeler/
@@ -20,7 +24,10 @@ Requires:	jakarta-commons-collections
 Requires:	jakarta-commons-digester
 Requires:	jakarta-commons-logging
 Requires:	jmx
+Requires:    jpackage-utils
 Requires:	jre >= 1.2
+Provides:    jakarta-commons-modeler
+Obsoletes:    jakarta-commons-modeler
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,37 +60,38 @@ Dokumentacja do Jakarta Commons Modeller.
 %setup -q -n commons-modeler-%{version}-src
 
 %build
-required_jars="commons-digester commons-logging jre/jmx"
-export CLASSPATH=$(build-classpath $required_jars)
+required_jars="commons-digester commons-logging jmx"
+CLASSPATH=$(build-classpath $required_jars)
+export CLASSPATH
 %ant dist
-mv dist/commons-modeler-src.jar .
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
-for a in dist/*.jar; do
-	jar=${a##*/}
-	cp -a dist/$jar $RPM_BUILD_ROOT%{_javadir}/${jar%%.jar}-%{version}.jar
-	ln -s ${jar%%.jar}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/$jar
-done
+cp -a dist/commons-modeler.jar $RPM_BUILD_ROOT%{_javadir}/commons-modeler-%{version}.jar
+ln -s commons-modeler-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-modeler.jar
 
 # javadoc
+%if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -a dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -sf %{name}-%{version} %{_javadocdir}/%{name}
+ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
 %doc LICENSE.txt RELEASE-NOTES.txt
 %{_javadir}/*.jar
 
+%if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
 %ghost %{_javadocdir}/%{name}
+%endif
