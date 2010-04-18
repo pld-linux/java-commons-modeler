@@ -14,16 +14,16 @@ Source0:	http://www.apache.org/dist/commons/modeler/source/commons-modeler-%{ver
 # Source0-md5:	43983c66113ddaa9880e4a7ea7d38db4
 URL:		http://commons.apache.org/modeler/
 BuildRequires:	ant
+BuildRequires:	java(jmx)
 BuildRequires:	java-commons-digester
 BuildRequires:	java-commons-logging
 BuildRequires:	jdk >= 1.2
-BuildRequires:	jmx
 BuildRequires:	rpm-javaprov
+Requires:	java(jmx)
 Requires:	java-commons-beanutils
 Requires:	java-commons-collections
 Requires:	java-commons-digester
 Requires:	java-commons-logging
-Requires:	jmx
 Requires:	jpackage-utils
 Requires:	jre >= 1.2
 Provides:	jakarta-commons-modeler
