@@ -7,7 +7,7 @@ Summary:	Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		java-commons-modeler
 Version:	2.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/modeler/source/commons-modeler-%{version}-src.tar.gz
