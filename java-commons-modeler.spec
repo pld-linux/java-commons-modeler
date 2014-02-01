@@ -7,7 +7,7 @@ Summary:	Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		java-commons-modeler
 Version:	2.0
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/modeler/source/commons-modeler-%{version}-src.tar.gz
@@ -26,7 +26,6 @@ Requires:	java-commons-digester
 Requires:	java-commons-logging
 Requires:	jpackage-utils
 Requires:	jre >= 1.2
-Provides:	jakarta-commons-modeler
 Obsoletes:	jakarta-commons-modeler
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,7 +47,6 @@ Summary:	Commons Modeller documentation
 Summary(pl.UTF-8):	Dokumentacja do Jakarta Commons Modeller
 Group:		Documentation
 Requires:	jpackage-utils
-Provides:	jakarta-commons-modeler-javadoc
 Obsoletes:	jakarta-commons-modeler-doc
 Obsoletes:	jakarta-commons-modeler-javadoc
 
