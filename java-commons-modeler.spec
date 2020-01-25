@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_without    javadoc        # don't build javadoc
 
-%include	/usr/lib/rpm/macros.java
 Summary:	Commons Modeler - managing resources via Java Management Extensions
 Summary(pl.UTF-8):	Commons Modeler - zarządzanie zasobami z użyciem Java Management Extensions
 Name:		java-commons-modeler
